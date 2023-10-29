@@ -59,7 +59,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
 }
 
 data "template_file" "node_ecs_app" {
-  template = file("./templates/node_ecs_app.json.tpl")
+  template = file("./aws/node_ecs_app.json.tpl")
   vars = {
     app_image      = aws_ecr_repository.node_ecs_app.repository_url
     app_port       = var.app_port

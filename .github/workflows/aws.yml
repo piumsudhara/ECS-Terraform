@@ -1,16 +1,17 @@
 name: Deploy to Amazon ECS
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Terraform"]
+    types:
+      - completed
 
 env:
   AWS_REGION: ap-southeast-1                   
   ECR_REPOSITORY: node_ecs_app             
   ECS_SERVICE: node_ecs_svc                 
   ECS_CLUSTER: node-ecs-cluster                 
-  ECS_TASK_DEFINITION: templates/node_ecs_app.json       
+  ECS_TASK_DEFINITION: aws/node_ecs_app.json       
   CONTAINER_NAME: node_ecs_app                     
 
 permissions:
@@ -18,7 +19,7 @@ permissions:
 
 jobs:  
   Deploy:
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: production
     name: Deploy
