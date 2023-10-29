@@ -72,4 +72,4 @@ jobs:
       id: alb-url
       run: |
           ALB_URL=$(aws elbv2 describe-load-balancers --query LoadBalancers[*].DNSName --output text)
-          $ALB_URL 
+          echo "$ALB_URL"
