@@ -70,8 +70,7 @@ jobs:
         wait-for-service-stability: true
 
   run_on_workflow_a_failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Failure
-      run: echo "Production release rejected."      
+     runs-on: ubuntu-latest
+     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+     steps:
+       - run: echo "Production Release Rejected."      
