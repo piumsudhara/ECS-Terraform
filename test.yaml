@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 jobs:  
-  Deploy:
+  run_on_workflow_a_success:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: production
@@ -69,8 +69,8 @@ jobs:
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
 
-  Failure:
+  run_on_workflow_a_failure:
      runs-on: ubuntu-latest
      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
      steps:
-       - run: echo "Production Release Rejected."
+       - run: echo "Production Release Rejected."      
