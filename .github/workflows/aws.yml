@@ -69,7 +69,7 @@ jobs:
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
 
-    - name: Expose ALB
+    - name: Expose Amazon ALB URL
       id: alb-url
       run: |
           ALB_URL=$(aws elbv2 describe-load-balancers --query LoadBalancers[*].DNSName --output text)
