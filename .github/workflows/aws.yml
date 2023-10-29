@@ -17,12 +17,12 @@ env:
 permissions:
   contents: read
 
-jobs:
-  deploy:
-    name: Deploy
+jobs:  
+  run_on_workflow_a_success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: production
-
+    name: Deploy
     steps:
     - name: Checkout
       uses: actions/checkout@v3
