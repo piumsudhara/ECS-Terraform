@@ -1,4 +1,3 @@
-//PSK
 'use strict';
 
 var express = require('express');
